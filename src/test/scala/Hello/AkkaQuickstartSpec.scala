@@ -1,12 +1,13 @@
 //#full-example
-package com.lightbend.akka.sample
+package Hello
 
-import org.scalatest.{ BeforeAndAfterAll, FlatSpecLike, Matchers }
-import akka.actor.{ Actor, Props, ActorSystem }
-import akka.testkit.{ ImplicitSender, TestKit, TestActorRef, TestProbe }
+import Hello.Greeter._
+import Hello.Printer._
+import akka.actor.ActorSystem
+import akka.testkit.{TestKit, TestProbe}
+import org.scalatest.{BeforeAndAfterAll, FlatSpecLike, Matchers}
+
 import scala.concurrent.duration._
-import Greeter._
-import Printer._
 
 //#test-classes
 class AkkaQuickstartSpec(_system: ActorSystem)
@@ -16,6 +17,7 @@ class AkkaQuickstartSpec(_system: ActorSystem)
   with BeforeAndAfterAll {
   //#test-classes
 
+  /** this constructor is important to make this class a suite*/
   def this() = this(ActorSystem("AkkaQuickstartSpec"))
 
   override def afterAll: Unit = {
@@ -25,6 +27,7 @@ class AkkaQuickstartSpec(_system: ActorSystem)
   //#first-test
   //#specification-example
   "A Greeter Actor" should "pass on a greeting message when instructed to" in {
+
     //#specification-example
     val testProbe = TestProbe()
     val helloGreetingMessage = "hello"
