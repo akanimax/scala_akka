@@ -18,8 +18,10 @@ class AkkaQuickstartSpec(_system: ActorSystem)
   //#test-classes
 
   /** this constructor is important to make this class a suite*/
-  def this() = this(ActorSystem("AkkaQuickstartSpec"))
+  def this() = this(ActorSystem("AkkaQuickstartSpec")) // Basically The suite creates an object of this
+  // directly by calling the no-arg constructor.
 
+  // The system used here comes from the TestKit extension.
   override def afterAll: Unit = {
     shutdown(system)
   }
